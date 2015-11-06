@@ -194,3 +194,19 @@ BOOST_AUTO_TEST_CASE(is_volatile)
     BOOST_REQUIRE_EQUAL(xxx, std::is_volatile<int volatile *volatile>::value);
     BOOST_REQUIRE_EQUAL(xxx, std::is_volatile<int volatile &>::value);
 }
+
+BOOST_AUTO_TEST_CASE(is_trivial)
+{
+    BOOST_REQUIRE_EQUAL(xxx, std::is_trivial<int>::value);
+    class Empty {};
+    BOOST_REQUIRE_EQUAL(xxx, std::is_trivial<Empty>::value);
+    BOOST_REQUIRE_EQUAL(xxx, std::is_trivial<Empty[10]>::value);
+    class CustomConstructor
+    {
+    public:
+        CustomConstructor(int i) : i_(i) {}
+    private:
+        int &i_;
+    };
+    BOOST_REQUIRE_EQUAL(xxx, std::is_trivial<CustomConstructor>::value);
+}
