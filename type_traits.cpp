@@ -183,3 +183,14 @@ BOOST_AUTO_TEST_CASE(is_const)
     BOOST_REQUIRE_EQUAL(xxx, std::is_const<int const *const>::value);
     BOOST_REQUIRE_EQUAL(xxx, std::is_const<int const &>::value);
 }
+
+BOOST_AUTO_TEST_CASE(is_volatile)
+{
+    BOOST_REQUIRE_EQUAL(xxx, std::is_volatile<int>::value);
+    BOOST_REQUIRE_EQUAL(xxx, std::is_volatile<volatile int>::value);
+    BOOST_REQUIRE_EQUAL(xxx, std::is_volatile<int volatile *>::value);
+    BOOST_REQUIRE_EQUAL(xxx, std::is_volatile<volatile int *>::value);
+    BOOST_REQUIRE_EQUAL(xxx, std::is_volatile<int *volatile>::value);
+    BOOST_REQUIRE_EQUAL(xxx, std::is_volatile<int volatile *volatile>::value);
+    BOOST_REQUIRE_EQUAL(xxx, std::is_volatile<int volatile &>::value);
+}
