@@ -5,6 +5,7 @@
 #include <ostream>
 #include <stdexcept>
 #include <string>
+#include <type_traits>
 #include <utility>
 
 #define BOOST_TEST_MAIN
