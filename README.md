@@ -39,7 +39,7 @@ the tests and report failed assertions.
 - [CMake](http://www.cmake.org) for the build infrastructure.
 - [Boost](http://www.boost.org) for the unit test framework.  The build script expects to find a compiled Boost.Test
   configured as a static library, multithreaded, with static C/C++ runtime.  This choice is arbitrary and you can
-  modify to suit your own needs.
+  modify the build script to suit your own needs.
   
 # Contributing
 
