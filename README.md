@@ -17,6 +17,8 @@ There is an associated header file for each koan that contains just enough infra
 You can safely ignore this header file if you are only interested in consuming the koans as a student.  If you
 are interested in writing new koans, you may find useful tricks inside those header files.
 
+Current [list of koans](koans.md).
+
 # Practicing the Koans
 
 Each koan consists of a number of test cases.  Each test case consists of a number of related statements posed
