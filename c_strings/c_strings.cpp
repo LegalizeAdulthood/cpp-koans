@@ -75,8 +75,6 @@ Hello, world!
 
 BOOST_AUTO_TEST_SUITE_END()
 
-BOOST_AUTO_TEST_SUITE(c_strings)
-
 BOOST_AUTO_TEST_CASE(begin_end_on_character_arrays)
 {
     char s[]{"Hello, world!"};
@@ -84,5 +82,3 @@ BOOST_AUTO_TEST_CASE(begin_end_on_character_arrays)
     BOOST_REQUIRE_EQUAL(xxx, std::begin(s));
     BOOST_REQUIRE_EQUAL(xxx, std::end(s));
 }
-
-BOOST_AUTO_TEST_SUITE_END()
