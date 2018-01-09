@@ -107,26 +107,31 @@ BOOST_AUTO_TEST_CASE(std_string_capacity)
     BOOST_REQUIRE_EQUAL(xxx, s.capacity());
 }
 
-BOOST_AUTO_TEST_CASE(std_string_operators)
+BOOST_AUTO_TEST_CASE(std_string_clear)
 {
     std::string s{"Hello, world!"};
     s.clear();
     BOOST_REQUIRE_EQUAL(xxx, s.length());
     BOOST_REQUIRE_EQUAL(xxx, s.empty());
     BOOST_REQUIRE_GE(static_cast<std::string::size_type>(xxx), s.capacity());
+}
 
-    s += s;
-    s = "Hello, world!";
-    BOOST_REQUIRE_EQUAL(xxx, s.length());
-    BOOST_REQUIRE_GE(static_cast<std::string::size_type>(xxx), s.capacity());
+BOOST_AUTO_TEST_CASE(std_string_insert)
+{
+    std::string s2{"Bob"};
+    s2.insert(1, "illy B");
+    BOOST_REQUIRE_EQUAL(xxx, s2);
 
-    s.shrink_to_fit();
-    BOOST_REQUIRE_EQUAL(xxx, s.length());
-    BOOST_REQUIRE_GE(static_cast<std::string::size_type>(xxx), s.capacity());
+    s2.insert(0, 2, '-');
+    BOOST_REQUIRE_EQUAL(xxx, s2);
 
-    s.reserve(1024);
-    BOOST_REQUIRE_EQUAL(xxx, s.length());
-    BOOST_REQUIRE_EQUAL(xxx, s.capacity());
+    s2.insert(2, "Hello, world!", 7);
+    BOOST_REQUIRE_EQUAL(xxx, s2);
+
+    std::string s3{"Hello, world!"};
+    std::string s4{"big, fat"};
+    s3.insert(7, s4);
+    BOOST_REQUIRE_EQUAL(xxx, s3);
 }
 
 BOOST_AUTO_TEST_CASE(std_string_allocators)
