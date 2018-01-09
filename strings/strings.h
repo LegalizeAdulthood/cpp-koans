@@ -2,7 +2,6 @@
 
 #include <iterator>
 #include <string>
-#include <string_view>
 #include <type_traits>
 
 #define BOOST_TEST_MAIN

@@ -1,13 +1,5 @@
 #include "strings.h"
 
-BOOST_AUTO_TEST_CASE(character_arrays)
-{
-    char s[]{"Hello, world!"};
-
-    BOOST_REQUIRE_EQUAL(xxx, std::begin(s));
-    BOOST_REQUIRE_EQUAL(xxx, std::end(s));
-}
-
 BOOST_AUTO_TEST_CASE(std_string_variants)
 {
     BOOST_REQUIRE((std::is_same_v<std::string, std::basic_string<XXX>>));
@@ -35,8 +27,8 @@ BOOST_AUTO_TEST_CASE(std_string_accessors)
     BOOST_REQUIRE_THROW(s.at(1000), XXX);
     BOOST_REQUIRE_EQUAL(xxx, s.front());
     BOOST_REQUIRE_EQUAL(xxx, s.back());
-    BOOST_REQUIRE((std::is_same_v<XXX, decltype(s.data())>));
-    BOOST_REQUIRE((std::is_same_v<XXX, decltype(s.c_str())>));
+    BOOST_REQUIRE((std::is_same_v<decltype(s.data()), XXX>));
+    BOOST_REQUIRE((std::is_same_v<decltype(s.c_str()), XXX>));
 }
 
 BOOST_AUTO_TEST_CASE(std_string_allocators)
