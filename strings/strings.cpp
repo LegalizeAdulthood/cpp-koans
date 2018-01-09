@@ -64,7 +64,7 @@ BOOST_AUTO_TEST_CASE(std_string_literals)
 
 BOOST_AUTO_TEST_CASE(std_string_accessors)
 {
-    std::string s{"Hello, world!"};
+    std::string const s{"Hello, world!"};
 
     BOOST_REQUIRE_EQUAL(xxx, s[0]);
     BOOST_REQUIRE_EQUAL('w', s.at(xxx));
@@ -77,6 +77,56 @@ BOOST_AUTO_TEST_CASE(std_string_accessors)
 
 BOOST_AUTO_TEST_CASE(string_iterators)
 {
+    std::string const s{"Hello, world!"};
+    BOOST_REQUIRE((std::is_same_v<decltype(s.begin()), XXX>));
+    BOOST_REQUIRE((std::is_same_v<decltype(s.cbegin()), XXX>));
+    BOOST_REQUIRE_EQUAL(xxx, *s.begin());
+    BOOST_REQUIRE_EQUAL(xxx, *(s.end() - 1));
+    BOOST_REQUIRE_EQUAL(xxx, *s.rbegin());
+    BOOST_REQUIRE_EQUAL(xxx, *(s.rend() - 1));
+}
+
+BOOST_AUTO_TEST_CASE(std_string_capacity)
+{
+    std::string s{"Hello, world!"};
+    BOOST_REQUIRE_EQUAL(xxx, s.length());
+    BOOST_REQUIRE_EQUAL(xxx, s.empty());
+    BOOST_REQUIRE_GE(static_cast<std::string::size_type>(xxx), s.capacity());
+
+    s += s;
+    s = "Hello, world!";
+    BOOST_REQUIRE_EQUAL(xxx, s.length());
+    BOOST_REQUIRE_GE(static_cast<std::string::size_type>(xxx), s.capacity());
+
+    s.shrink_to_fit();
+    BOOST_REQUIRE_EQUAL(xxx, s.length());
+    BOOST_REQUIRE_GE(static_cast<std::string::size_type>(xxx), s.capacity());
+
+    s.reserve(1024);
+    BOOST_REQUIRE_EQUAL(xxx, s.length());
+    BOOST_REQUIRE_EQUAL(xxx, s.capacity());
+}
+
+BOOST_AUTO_TEST_CASE(std_string_operators)
+{
+    std::string s{"Hello, world!"};
+    s.clear();
+    BOOST_REQUIRE_EQUAL(xxx, s.length());
+    BOOST_REQUIRE_EQUAL(xxx, s.empty());
+    BOOST_REQUIRE_GE(static_cast<std::string::size_type>(xxx), s.capacity());
+
+    s += s;
+    s = "Hello, world!";
+    BOOST_REQUIRE_EQUAL(xxx, s.length());
+    BOOST_REQUIRE_GE(static_cast<std::string::size_type>(xxx), s.capacity());
+
+    s.shrink_to_fit();
+    BOOST_REQUIRE_EQUAL(xxx, s.length());
+    BOOST_REQUIRE_GE(static_cast<std::string::size_type>(xxx), s.capacity());
+
+    s.reserve(1024);
+    BOOST_REQUIRE_EQUAL(xxx, s.length());
+    BOOST_REQUIRE_EQUAL(xxx, s.capacity());
 }
 
 BOOST_AUTO_TEST_CASE(std_string_allocators)
