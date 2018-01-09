@@ -39,11 +39,16 @@ BOOST_AUTO_TEST_SUITE(string_literals)
 
 BOOST_AUTO_TEST_CASE(type_of_string_literal)
 {
-    BOOST_REQUIRE((std::is_same_v<decltype("Hello, world!"), XXX>));
-    BOOST_REQUIRE((std::is_same_v<decltype(L"Hello, world!"), XXX>));
-    BOOST_REQUIRE((std::is_same_v<decltype(u"Hello, world!"), XXX>));
-    BOOST_REQUIRE((std::is_same_v<decltype(U"Hello, world!"), XXX>));
-    BOOST_REQUIRE((std::is_same_v<decltype(u8"Hello, world!"), XXX>));
+    auto s1{"Hello, world!"};
+    auto s2{L"Hello, world!"};
+    auto s3{u"Hello, world!"};
+    auto s4{U"Hello, world!"};
+    auto s5{u8"Hello, world!"};
+    BOOST_REQUIRE((std::is_same_v<decltype(s1), XXX>));
+    BOOST_REQUIRE((std::is_same_v<decltype(s2), XXX>));
+    BOOST_REQUIRE((std::is_same_v<decltype(s3), XXX>));
+    BOOST_REQUIRE((std::is_same_v<decltype(s4), XXX>));
+    BOOST_REQUIRE((std::is_same_v<decltype(s5), XXX>));
 }
 
 BOOST_AUTO_TEST_CASE(type_of_raw_string_literals)
