@@ -35,6 +35,27 @@ BOOST_AUTO_TEST_CASE(std_string_view_constructors)
     BOOST_REQUIRE_EQUAL(xxx, s3.length());
 }
 
+BOOST_AUTO_TEST_CASE(std_string_view_accessors)
+{
+    std::string_view s{"Hello, world!"};
+    BOOST_REQUIRE_EQUAL(xxx, s[0]);
+    BOOST_REQUIRE_EQUAL(xxx, s.at(0));
+    BOOST_REQUIRE_THROW(s.at(100), XXX);
+    BOOST_REQUIRE_EQUAL(xxx, s.front());
+    BOOST_REQUIRE_EQUAL(xxx, s.back());
+    BOOST_REQUIRE((std::is_same_v<decltype(s.data()), XXX>));
+    BOOST_REQUIRE_EQUAL(xxx, *s.data());
+}
+
+BOOST_AUTO_TEST_CASE(std_string_view_capacity)
+{
+    std::string_view s{"Hello, world!"};
+    BOOST_REQUIRE_EQUAL(xxx, s.size());
+    BOOST_REQUIRE_EQUAL(xxx, s.length());
+    BOOST_REQUIRE_EQUAL(xxx, s.empty());
+    BOOST_REQUIRE_GE(s.max_size(), static_cast<std::string_view::size_type>(xxx));
+}
+
 BOOST_AUTO_TEST_CASE(std_string_view_iterators)
 {
     std::string_view s{"Hello, world!"};
