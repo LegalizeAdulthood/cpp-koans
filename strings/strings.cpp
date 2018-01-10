@@ -248,22 +248,12 @@ BOOST_AUTO_TEST_CASE(std_string_concatenation_operator)
 BOOST_AUTO_TEST_CASE(std_string_comparison_operators)
 {
     const std::string alpha{"Alpha"};
-    const std::string beta{"Beta"};
-    bool lt = static_cast<std::string>(xxx) < beta;
-    BOOST_REQUIRE(lt);
-
-    bool gt = static_cast<std::string>(xxx) > beta;
-    BOOST_REQUIRE(gt);
-
-    bool le = static_cast<std::string>(xxx) <= beta;
-    bool ge = static_cast<std::string>(xxx) >= beta;
-    BOOST_REQUIRE(le && ge);
-
-    bool eq = static_cast<std::string>(xxx) == alpha;
-    BOOST_REQUIRE(eq);
-
-    bool ne = static_cast<std::string>(xxx) != alpha;
-    BOOST_REQUIRE(ne);
+    BOOST_REQUIRE("xxx"s < alpha);
+    BOOST_REQUIRE("xxx"s > alpha);
+    // change both xxx's to the same thing to make this true
+    BOOST_REQUIRE("xxx"s <= alpha && "xxx"s >= alpha);
+    BOOST_REQUIRE("xxx"s == alpha);
+    BOOST_REQUIRE(static_cast<std::string>(xxx) != alpha);
 }
 
 BOOST_AUTO_TEST_CASE(std_string_compare)
