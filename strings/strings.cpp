@@ -385,6 +385,13 @@ BOOST_AUTO_TEST_CASE(std_string_copy)
 
 BOOST_AUTO_TEST_CASE(std_string_resize)
 {
+    using namespace std::string_literals;
+    std::string s;
+    s.resize(xxx);
+    BOOST_REQUIRE_EQUAL("\0\0\0"s, s);
+
+    s.resize(5, xxx);
+    BOOST_REQUIRE_EQUAL("====="s, s);
 }
 
 BOOST_AUTO_TEST_CASE(std_string_swap)
