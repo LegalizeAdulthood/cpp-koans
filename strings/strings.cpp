@@ -226,12 +226,71 @@ BOOST_AUTO_TEST_CASE(std_string_append)
     BOOST_REQUIRE_EQUAL("+--+"s, s7);
 }
 
-BOOST_AUTO_TEST_CASE(std_string_operators)
+BOOST_AUTO_TEST_CASE(std_string_concatenation_operator)
 {
+    using namespace std::string_literals;
+    std::string s1{"One"};
+    std::string s2{s1 + static_cast<char>(xxx)};
+    BOOST_REQUIRE_EQUAL("One!"s, s2);
+
+    std::string s3{static_cast<char>(xxx) + s2};
+    BOOST_REQUIRE_EQUAL("!One!"s, s3);
+
+    std::string s4{"One, "};
+    std::string s5{xxx};
+    std::string s6{s4 + s5};
+    BOOST_REQUIRE_EQUAL("One, Two"s, s6);
+
+    const char *lit = "Ten";
+    std::string s7{s4 + lit};
+    BOOST_REQUIRE_EQUAL(xxx, s7);
+}
+
+BOOST_AUTO_TEST_CASE(std_string_comparison_operators)
+{
+    using namespace std::string_literals;
+    const std::string alpha{"Alpha"};
+    const std::string beta{"Beta"};
+    bool lt = static_cast<std::string>(xxx) < beta;
+    BOOST_REQUIRE(lt);
+
+    bool gt = static_cast<std::string>(xxx) > beta;
+    BOOST_REQUIRE(gt);
+
+    bool le = static_cast<std::string>(xxx) <= beta;
+    bool ge = static_cast<std::string>(xxx) >= beta;
+    BOOST_REQUIRE(le && ge);
+
+    bool eq = static_cast<std::string>(xxx) == alpha;
+    BOOST_REQUIRE(eq);
+
+    bool ne = static_cast<std::string>(xxx) != alpha;
+    BOOST_REQUIRE(ne);
 }
 
 BOOST_AUTO_TEST_CASE(std_string_compare)
 {
+    using namespace std::string_literals;
+    const std::string s1{"Alphabetical"};
+    const std::string s2{"Alphanumerical"};
+    auto res1 = s1.compare(s2);
+    BOOST_REQUIRE((std::is_same_v<decltype(res1), XXX>));
+    BOOST_REQUIRE_EQUAL(xxx, res1);
+
+    auto res2 = s1.compare(xxx, 5, s2);
+    BOOST_REQUIRE_EQUAL(0, res2);
+
+    auto res3 = s1.compare(xxx, 3, s2, 11, 3);
+    BOOST_REQUIRE_EQUAL(0, res3);
+
+    auto res4 = s1.compare("xxx");
+    BOOST_REQUIRE_EQUAL(0, res4);
+
+    auto res5 = s1.compare(xxx, 4, "ical");
+    BOOST_REQUIRE_EQUAL(0, res5);
+
+    auto res6 = s1.compare(xxx, 4, "Canonical", 5);
+    BOOST_REQUIRE_EQUAL(0, res6);
 }
 
 BOOST_AUTO_TEST_CASE(std_string_replace)

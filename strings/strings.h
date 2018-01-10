@@ -14,6 +14,8 @@ struct XXX
     operator std::string::size_type() const { throw std::runtime_error{"Oops"}; }
     operator std::string::iterator() const { throw std::runtime_error{"Oops"}; }
     operator char() const { throw std::runtime_error{"Oops"}; }
+    explicit operator std::string() const { throw std::runtime_error{"Ooops"}; }
+    explicit operator const char *() const { throw std::runtime_error{"Ooops"}; }
 };
 
 XXX xxx;
