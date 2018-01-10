@@ -37,7 +37,7 @@ BOOST_AUTO_TEST_CASE(std_string_view_constructors)
 
 BOOST_AUTO_TEST_CASE(std_string_view_accessors)
 {
-    std::string_view s{"Hello, world!"};
+    constexpr std::string_view s{"Hello, world!", 13};
     BOOST_REQUIRE_EQUAL(xxx, s[0]);
     BOOST_REQUIRE_EQUAL(xxx, s.at(0));
     BOOST_REQUIRE_THROW(s.at(100), XXX);
@@ -49,11 +49,29 @@ BOOST_AUTO_TEST_CASE(std_string_view_accessors)
 
 BOOST_AUTO_TEST_CASE(std_string_view_capacity)
 {
-    std::string_view s{"Hello, world!"};
+    constexpr std::string_view s{"Hello, world!", 13};
     BOOST_REQUIRE_EQUAL(xxx, s.size());
     BOOST_REQUIRE_EQUAL(xxx, s.length());
     BOOST_REQUIRE_EQUAL(xxx, s.empty());
     BOOST_REQUIRE_GE(s.max_size(), static_cast<std::string_view::size_type>(xxx));
+}
+
+BOOST_AUTO_TEST_CASE(std_string_view_modifiers)
+{
+    std::string_view s{"Hello, world!", 13};
+    s.remove_prefix(xxx);
+    BOOST_REQUIRE_EQUAL("world!"s, s);
+    s.remove_suffix(xxx);
+    BOOST_REQUIRE_EQUAL("world"s, s);
+}
+
+BOOST_AUTO_TEST_CASE(std_string_view_swap)
+{
+    std::string_view s{"Hello, world!", 13};
+    std::string_view s2{"Woof!", 5};
+    s.swap(s2);
+    BOOST_REQUIRE_EQUAL("xxx"s, s);
+    BOOST_REQUIRE_EQUAL("xxx"s, s2);
 }
 
 BOOST_AUTO_TEST_CASE(std_string_view_iterators)

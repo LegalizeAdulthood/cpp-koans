@@ -13,8 +13,7 @@
 struct XXX
 {
     operator bool() { throw std::runtime_error("Oops"); }
-	operator int() { throw std::runtime_error("Oops"); }
-    explicit operator std::string_view::size_type() { throw std::runtime_error("Oops"); }
+    operator std::string_view::size_type() { throw std::runtime_error("Oops"); }
 };
 
 XXX xxx;
