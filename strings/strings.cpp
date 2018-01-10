@@ -349,10 +349,38 @@ BOOST_AUTO_TEST_CASE(std_string_replace)
 
 BOOST_AUTO_TEST_CASE(std_string_substr)
 {
+    using namespace std::string_literals;
+    std::string s{"Holly Jolly Folly"};
+    BOOST_REQUIRE_EQUAL(xxx, s.substr());
+
+    BOOST_REQUIRE_EQUAL("Folly"s, s.substr(xxx));
+
+    BOOST_REQUIRE_EQUAL("Jolly"s, s.substr(xxx, xxx));
 }
 
 BOOST_AUTO_TEST_CASE(std_string_copy)
 {
+    using namespace std::string_literals;
+    char dest[5];
+    std::string s{"Holly Jolly Folly"};
+    auto res = s.copy(dest, xxx);
+    BOOST_REQUIRE((std::is_same_v<decltype(res), XXX>));
+    BOOST_REQUIRE_EQUAL(std::string(std::begin(dest), std::end(dest)), "Holly"s);
+    BOOST_REQUIRE_EQUAL(xxx, res);
+
+    char dest2[5];
+    s.copy(dest2, xxx, xxx);
+    BOOST_REQUIRE_EQUAL(std::string(std::begin(dest2), std::end(dest2)), "Jolly"s);
+
+    BOOST_REQUIRE_THROW(s.copy(dest2, 0, std::string::npos), XXX);
+
+    char dest3[80];
+    auto res2 = s.copy(dest3, std::string::npos);
+    BOOST_REQUIRE_EQUAL(xxx, res2);
+
+    char dest4[5];
+    s.copy(dest4, std::string::npos, xxx);
+    BOOST_REQUIRE_EQUAL(std::string(std::begin(dest4), std::end(dest4)), "Folly"s);
 }
 
 BOOST_AUTO_TEST_CASE(std_string_resize)
