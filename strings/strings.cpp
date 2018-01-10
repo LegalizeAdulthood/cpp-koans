@@ -400,26 +400,13 @@ BOOST_AUTO_TEST_CASE(std_string_find)
     BOOST_REQUIRE_EQUAL(xxx, res);
 
     char ch{xxx};
-    res = s.find(ch);
-    BOOST_REQUIRE_EQUAL(4, res);
-
-    res = s.find(ch, xxx);
-    BOOST_REQUIRE_EQUAL(6, res);
-
-    res = s.find("!"s);
-    BOOST_REQUIRE_EQUAL(xxx, res);
-
-    res = s.find(" a"s, xxx);
-    BOOST_REQUIRE_EQUAL(14, res);
-
-    res = s.find(" a");
-    BOOST_REQUIRE_EQUAL(xxx, res);
-
-    res = s.find(" a", xxx);
-    BOOST_REQUIRE_EQUAL(14, res);
-
-    res = s.find(" a", xxx, 1);
-    BOOST_REQUIRE_EQUAL(4, res);
+    BOOST_REQUIRE_EQUAL(4, s.find(ch));
+    BOOST_REQUIRE_EQUAL(6, s.find(ch, xxx));
+    BOOST_REQUIRE_EQUAL(xxx, s.find("!"s));
+    BOOST_REQUIRE_EQUAL(14, s.find(" a"s, xxx));
+    BOOST_REQUIRE_EQUAL(xxx, s.find(" a"));
+    BOOST_REQUIRE_EQUAL(14, s.find(" a", xxx));
+    BOOST_REQUIRE_EQUAL(4, s.find(" a", xxx, 1));
 
     BOOST_REQUIRE_EQUAL(xxx, ""s.find(ch));
     BOOST_REQUIRE_EQUAL(xxx, "foo"s.find(ch, 10));
@@ -429,6 +416,17 @@ BOOST_AUTO_TEST_CASE(std_string_find)
 
 BOOST_AUTO_TEST_CASE(std_string_rfind)
 {
+    std::string s{"Foobar Googly Eyes"};
+    auto res = s.rfind("oo"s);
+    BOOST_REQUIRE((std::is_same_v<decltype(res), XXX>));
+    BOOST_REQUIRE_EQUAL(xxx, res);
+
+    BOOST_REQUIRE_EQUAL(xxx, s.rfind("oo"s, 6));
+    BOOST_REQUIRE_EQUAL(xxx, s.rfind("oo"));
+    BOOST_REQUIRE_EQUAL(xxx, s.rfind("oo", 6));
+    BOOST_REQUIRE_EQUAL(xxx, s.rfind("oo", 6, 1));
+    BOOST_REQUIRE_EQUAL(xxx, s.rfind('y'));
+    BOOST_REQUIRE_EQUAL(xxx, s.rfind('y', 14));
 }
 
 BOOST_AUTO_TEST_CASE(std_string_find_first_of)
