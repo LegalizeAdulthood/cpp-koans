@@ -2,7 +2,7 @@
 
 using namespace std::string_literals;
 
-BOOST_AUTO_TEST_CASE(string_view_variants)
+BOOST_AUTO_TEST_CASE(std_string_view_variants)
 {
     BOOST_REQUIRE((std::is_same_v<XXX, std::basic_string_view<char>>));
     BOOST_REQUIRE((std::is_same_v<XXX, std::wstring_view>));
@@ -10,7 +10,7 @@ BOOST_AUTO_TEST_CASE(string_view_variants)
     BOOST_REQUIRE((std::is_same_v<XXX, std::u32string_view>));
 }
 
-BOOST_AUTO_TEST_CASE(string_view_related_types)
+BOOST_AUTO_TEST_CASE(std_string_view_related_types)
 {
     BOOST_REQUIRE((std::is_same_v<XXX, std::string_view::traits_type>));
     BOOST_REQUIRE((std::is_same_v<XXX, std::string_view::value_type>));
@@ -22,12 +22,27 @@ BOOST_AUTO_TEST_CASE(string_view_related_types)
     BOOST_REQUIRE((std::is_same_v<XXX, std::string_view::difference_type>));
 }
 
-BOOST_AUTO_TEST_CASE(string_view_constructors)
+BOOST_AUTO_TEST_CASE(std_string_view_constructors)
 {
     constexpr std::string_view s;
     BOOST_REQUIRE_EQUAL(xxx, s.empty());
 
     constexpr std::string_view s2{"Hello, world!", 5};
-    BOOST_REQUIRE_EQUAL(xxx, s.length());
+    BOOST_REQUIRE_EQUAL(xxx, s2.length());
     BOOST_REQUIRE_EQUAL(xxx, s2);
+
+    /* constexpr */ std::string_view s3{"Hello, world!"};
+    BOOST_REQUIRE_EQUAL(xxx, s3.length());
+}
+
+BOOST_AUTO_TEST_CASE(std_string_view_iterators)
+{
+    std::string_view s{"Hello, world!"};
+
+    BOOST_REQUIRE((std::is_same_v<decltype(s.begin()), XXX>));
+    BOOST_REQUIRE((std::is_same_v<decltype(s.cbegin()), XXX>));
+    BOOST_REQUIRE_EQUAL(xxx, *s.begin());
+    BOOST_REQUIRE_EQUAL(xxx, *(s.end() - 1));
+    BOOST_REQUIRE_EQUAL(xxx, *s.rbegin());
+    BOOST_REQUIRE_EQUAL(xxx, *(s.rend() - 1));
 }
