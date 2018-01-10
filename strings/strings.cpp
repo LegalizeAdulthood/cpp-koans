@@ -138,6 +138,87 @@ BOOST_AUTO_TEST_CASE(std_string_insert)
     std::string s5{"Hello, world!"};
     s5.insert(7, s4, xxx, 3);
     BOOST_REQUIRE_EQUAL("Hello, fat world!"s, s5);
+
+    std::string s6{"Hello? "};
+    std::string::iterator pos = s5.insert<std::string::iterator>(s5.begin(), s6.begin(), xxx);
+    BOOST_REQUIRE_EQUAL("Hello? Hello, fat world!"s, s5);
+    BOOST_REQUIRE_EQUAL(xxx, *pos);
+
+    std::string s7{", world"};
+    s7.insert(0, {'H', 'e', 'l', 'l', 'o'});
+    BOOST_REQUIRE_EQUAL(xxx, s7);
+}
+
+BOOST_AUTO_TEST_CASE(std_string_erase)
+{
+}
+
+BOOST_AUTO_TEST_CASE(std_string_push_back)
+{
+}
+
+BOOST_AUTO_TEST_CASE(std_string_pop_back)
+{
+}
+
+BOOST_AUTO_TEST_CASE(std_string_append)
+{
+}
+
+BOOST_AUTO_TEST_CASE(std_string_operators)
+{
+}
+
+BOOST_AUTO_TEST_CASE(std_string_compare)
+{
+}
+
+BOOST_AUTO_TEST_CASE(std_string_replace)
+{
+}
+
+BOOST_AUTO_TEST_CASE(std_string_substr)
+{
+}
+
+BOOST_AUTO_TEST_CASE(std_string_copy)
+{
+}
+
+BOOST_AUTO_TEST_CASE(std_string_resize)
+{
+}
+
+BOOST_AUTO_TEST_CASE(std_string_swap)
+{
+}
+
+BOOST_AUTO_TEST_CASE(std_string_find)
+{
+}
+
+BOOST_AUTO_TEST_CASE(std_string_rfind)
+{
+}
+
+BOOST_AUTO_TEST_CASE(std_string_find_first_of)
+{
+}
+
+BOOST_AUTO_TEST_CASE(std_string_find_first_not_of)
+{
+}
+
+BOOST_AUTO_TEST_CASE(std_string_find_last_of)
+{
+}
+
+BOOST_AUTO_TEST_CASE(std_string_find_last_not_of)
+{
+}
+
+BOOST_AUTO_TEST_CASE(std_string_conversions)
+{
 }
 
 BOOST_AUTO_TEST_CASE(std_string_allocators)
