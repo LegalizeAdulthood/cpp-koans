@@ -182,12 +182,11 @@ BOOST_AUTO_TEST_CASE(std_string_push_back)
     using namespace std::string_literals;
     std::string s{"<"};
     s.push_back(xxx);
-    BOOST_REQUIRE_EQUAL("<>", s);
+    BOOST_REQUIRE_EQUAL("<>"s, s);
 }
 
 BOOST_AUTO_TEST_CASE(std_string_pop_back)
 {
-    using namespace std::string_literals;
     std::string s{"[]"};
     s.pop_back();
     BOOST_REQUIRE_EQUAL(xxx, s);
@@ -195,6 +194,36 @@ BOOST_AUTO_TEST_CASE(std_string_pop_back)
 
 BOOST_AUTO_TEST_CASE(std_string_append)
 {
+    using namespace std::string_literals;
+    std::string s1{"<["};
+    auto res1 = s1.append(xxx, 2);
+    BOOST_REQUIRE((std::is_same_v<decltype(res1), XXX>));
+    BOOST_REQUIRE_EQUAL("<[]>"s, s1);
+
+    std::string s2{"Foo"};
+    s2.append("bar"s);
+    BOOST_REQUIRE_EQUAL(xxx, s2);
+
+    std::string s3{"Meta"};
+    s3.append("Well, what about the--"s, xxx);
+    BOOST_REQUIRE_EQUAL("Meta--"s, s3);
+
+    std::string s4{"Wafer "};
+    s4.append("Something"s, 4, xxx);
+    BOOST_REQUIRE_EQUAL("Wafer thin"s, s4);
+
+    std::string s5{"The good "};
+    s5.append(" wicked witch", xxx);
+    BOOST_REQUIRE_EQUAL("The good witch"s, s5);
+
+    std::string s6{"Powdered "};
+    const char lit[] = "donut";
+    s6.append(std::begin(lit), xxx);
+    BOOST_REQUIRE_EQUAL("Powdered donut"s, s6);
+
+    std::string s7{"+"};
+    s7.append({ xxx, xxx, xxx });
+    BOOST_REQUIRE_EQUAL("+--+"s, s7);
 }
 
 BOOST_AUTO_TEST_CASE(std_string_operators)
