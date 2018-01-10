@@ -467,14 +467,62 @@ BOOST_AUTO_TEST_CASE(std_string_find_first_not_of)
     BOOST_REQUIRE_EQUAL(xxx, s.find_first_not_of("abF", 3, 1));
     BOOST_REQUIRE_EQUAL(xxx, s.find_first_not_of('F'));
     BOOST_REQUIRE_EQUAL(xxx, s.find_first_not_of('o', 1));
+
+    BOOST_REQUIRE_EQUAL(xxx, s.find_first_not_of("Fobar GglyEes"s));
+    BOOST_REQUIRE_EQUAL(xxx, s.find_first_not_of("Fobar GglyEes"));
+    BOOST_REQUIRE_EQUAL(xxx, s.substr(1, 1).find_first_not_of('F'));
+    BOOST_REQUIRE_EQUAL(xxx, s.find_first_not_of("o"s, 100));
+    BOOST_REQUIRE_EQUAL(xxx, s.find_first_not_of("o", 100));
+    BOOST_REQUIRE_EQUAL(xxx, s.find_first_not_of("o", 100, 1));
+    BOOST_REQUIRE_EQUAL(xxx, s.find_first_not_of('o', 100));
 }
 
 BOOST_AUTO_TEST_CASE(std_string_find_last_of)
 {
+    std::string s{"Foobar Googly Eyes"};
+    auto res = s.find_last_of("EGF"s);
+    BOOST_REQUIRE((std::is_same_v<decltype(res), XXX>));
+    BOOST_REQUIRE_EQUAL(xxx, res);
+
+    BOOST_REQUIRE_EQUAL(xxx, s.find_last_of("EGF"s, 1));
+    BOOST_REQUIRE_EQUAL(xxx, s.find_last_of("EGF"));
+    BOOST_REQUIRE_EQUAL(xxx, s.find_last_of("EGF", 1));
+    BOOST_REQUIRE_EQUAL(xxx, s.find_last_of("EGF", 1, 1));
+    BOOST_REQUIRE_EQUAL(xxx, s.find_last_of('o'));
+    BOOST_REQUIRE_EQUAL(xxx, s.find_last_of('o', 3));
+
+    BOOST_REQUIRE_EQUAL(xxx, s.find_last_of(""s));
+    BOOST_REQUIRE_EQUAL(xxx, s.find_last_of(""));
+    BOOST_REQUIRE_EQUAL(xxx, s.find_last_of("ABC"s));
+    BOOST_REQUIRE_EQUAL(xxx, s.find_last_of("ABC"));
+    BOOST_REQUIRE_EQUAL(xxx, s.find_last_of('A'));
+    BOOST_REQUIRE_EQUAL(xxx, s.find_last_of("o"s, 100));
+    BOOST_REQUIRE_EQUAL(xxx, s.find_last_of("o", 100));
+    BOOST_REQUIRE_EQUAL(xxx, s.find_last_of("o", 100, 1));
+    BOOST_REQUIRE_EQUAL(xxx, s.find_last_of('o', 100));
 }
 
 BOOST_AUTO_TEST_CASE(std_string_find_last_not_of)
 {
+    std::string s{"Foobar Googly Eyes"};
+    auto res = s.find_last_not_of("ABCDEFG"s);
+    BOOST_REQUIRE((std::is_same_v<decltype(res), XXX>));
+    BOOST_REQUIRE_EQUAL(xxx, res);
+
+    BOOST_REQUIRE_EQUAL(xxx, s.find_last_not_of("oab"s, 1));
+    BOOST_REQUIRE_EQUAL(xxx, s.find_last_not_of("abF"));
+    BOOST_REQUIRE_EQUAL(xxx, s.find_last_not_of("abF", 3));
+    BOOST_REQUIRE_EQUAL(xxx, s.find_last_not_of("abF", 3, 1));
+    BOOST_REQUIRE_EQUAL(xxx, s.find_last_not_of('F'));
+    BOOST_REQUIRE_EQUAL(xxx, s.find_last_not_of('o', 1));
+
+    BOOST_REQUIRE_EQUAL(xxx, s.find_last_not_of("Fobar GglyEes"s));
+    BOOST_REQUIRE_EQUAL(xxx, s.find_last_not_of("Fobar GglyEes"));
+    BOOST_REQUIRE_EQUAL(xxx, s.substr(1, 1).find_last_not_of('F'));
+    BOOST_REQUIRE_EQUAL(xxx, s.find_last_not_of("o"s, 100));
+    BOOST_REQUIRE_EQUAL(xxx, s.find_last_not_of("o", 100));
+    BOOST_REQUIRE_EQUAL(xxx, s.find_last_not_of("o", 100, 1));
+    BOOST_REQUIRE_EQUAL(xxx, s.find_last_not_of('o', 100));
 }
 
 BOOST_AUTO_TEST_CASE(std_string_conversions)
