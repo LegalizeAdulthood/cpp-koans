@@ -98,6 +98,21 @@ BOOST_AUTO_TEST_CASE(std_string_view_substr)
     BOOST_REQUIRE_EQUAL("xxx"s, s5);
 }
 
+BOOST_AUTO_TEST_CASE(std_string_view_compare)
+{
+    std::string_view s1{"Alphabetical", 12};
+    std::string_view s2{"Alphanumerical", 14};
+    auto res1 = s1.compare(s2);
+    BOOST_REQUIRE((std::is_same_v<decltype(res1), XXX>));
+    BOOST_REQUIRE_EQUAL(xxx, res1);
+
+    BOOST_REQUIRE_EQUAL(0, s1.compare(xxx, 5, s2));
+    BOOST_REQUIRE_EQUAL(0, s1.compare(xxx, 3, s2, 11, 3));
+    BOOST_REQUIRE_EQUAL(0, s1.compare("xxx"));
+    BOOST_REQUIRE_EQUAL(0, s1.compare(xxx, 4, "ical"));
+    BOOST_REQUIRE_EQUAL(0, s1.compare(xxx, 4, "Canonical", 5));
+}
+
 BOOST_AUTO_TEST_CASE(std_string_view_iterators)
 {
     std::string_view s{"Hello, world!"};
