@@ -274,20 +274,11 @@ BOOST_AUTO_TEST_CASE(std_string_compare)
     BOOST_REQUIRE((std::is_same_v<decltype(res1), XXX>));
     BOOST_REQUIRE_EQUAL(xxx, res1);
 
-    auto res2 = s1.compare(xxx, 5, s2);
-    BOOST_REQUIRE_EQUAL(0, res2);
-
-    auto res3 = s1.compare(xxx, 3, s2, 11, 3);
-    BOOST_REQUIRE_EQUAL(0, res3);
-
-    auto res4 = s1.compare("xxx");
-    BOOST_REQUIRE_EQUAL(0, res4);
-
-    auto res5 = s1.compare(xxx, 4, "ical");
-    BOOST_REQUIRE_EQUAL(0, res5);
-
-    auto res6 = s1.compare(xxx, 4, "Canonical", 5);
-    BOOST_REQUIRE_EQUAL(0, res6);
+    BOOST_REQUIRE_EQUAL(0, s1.compare(xxx, 5, s2));
+    BOOST_REQUIRE_EQUAL(0, s1.compare(xxx, 3, s2, 11, 3));
+    BOOST_REQUIRE_EQUAL(0, s1.compare("xxx"));
+    BOOST_REQUIRE_EQUAL(0, s1.compare(xxx, 4, "ical"));
+    BOOST_REQUIRE_EQUAL(0, s1.compare(xxx, 4, "Canonical", 5));
 }
 
 BOOST_AUTO_TEST_CASE(std_string_replace)
