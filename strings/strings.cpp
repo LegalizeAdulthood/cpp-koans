@@ -431,6 +431,27 @@ BOOST_AUTO_TEST_CASE(std_string_rfind)
 
 BOOST_AUTO_TEST_CASE(std_string_find_first_of)
 {
+    std::string s{"Foobar Googly Eyes"};
+    auto res = s.find_first_of("EGF"s);
+    BOOST_REQUIRE((std::is_same_v<decltype(res), XXX>));
+    BOOST_REQUIRE_EQUAL(xxx, res);
+
+    BOOST_REQUIRE_EQUAL(xxx, s.find_first_of("EGF"s, 1));
+    BOOST_REQUIRE_EQUAL(xxx, s.find_first_of("EGF"));
+    BOOST_REQUIRE_EQUAL(xxx, s.find_first_of("EGF", 1));
+    BOOST_REQUIRE_EQUAL(xxx, s.find_first_of("EGF", 1, 1));
+    BOOST_REQUIRE_EQUAL(xxx, s.find_first_of('o'));
+    BOOST_REQUIRE_EQUAL(xxx, s.find_first_of('o', 3));
+    
+    BOOST_REQUIRE_EQUAL(xxx, s.find_first_of(""s));
+    BOOST_REQUIRE_EQUAL(xxx, s.find_first_of(""));
+    BOOST_REQUIRE_EQUAL(xxx, s.find_first_of("ABC"s));
+    BOOST_REQUIRE_EQUAL(xxx, s.find_first_of("ABC"));
+    BOOST_REQUIRE_EQUAL(xxx, s.find_first_of('A'));
+    BOOST_REQUIRE_EQUAL(xxx, s.find_first_of("o"s, 100));
+    BOOST_REQUIRE_EQUAL(xxx, s.find_first_of("o", 100));
+    BOOST_REQUIRE_EQUAL(xxx, s.find_first_of("o", 100, 1));
+    BOOST_REQUIRE_EQUAL(xxx, s.find_first_of('o', 100));
 }
 
 BOOST_AUTO_TEST_CASE(std_string_find_first_not_of)
