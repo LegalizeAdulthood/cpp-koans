@@ -104,6 +104,19 @@ BOOST_AUTO_TEST_CASE(std_string_view_substr)
     BOOST_REQUIRE_EQUAL("xxx"sv, s5);
 }
 
+BOOST_AUTO_TEST_CASE(std_string_comparison_operators)
+{
+    constexpr std::string_view alpha{"Alpha", 5};
+    BOOST_REQUIRE("xxx"sv < alpha);
+    BOOST_REQUIRE("xxx"sv > alpha);
+    BOOST_REQUIRE("xxx"sv <= alpha);
+    BOOST_REQUIRE("xxx"sv >= alpha);
+    // change both xxx's to the same thing to make this true
+    BOOST_REQUIRE("xxx"sv <= alpha && "xxx"sv >= alpha);
+    BOOST_REQUIRE("xxx"sv == alpha);
+    BOOST_REQUIRE(static_cast<std::string_view>(xxx) != alpha);
+}
+
 BOOST_AUTO_TEST_CASE(std_string_view_compare)
 {
     std::string_view s1{"Alphabetical", 12};
