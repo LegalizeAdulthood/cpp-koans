@@ -1,7 +1,21 @@
 #include "strings.h"
 
+BOOST_AUTO_TEST_CASE(std_string_literals)
+{
+    using namespace std::string_literals;
+    auto s1{"Hello, world!"s};
+    auto s2{L"Hello, world!"s};
+    auto s3{u"Hello, world!"s};
+    auto s4{U"Hello, world!"s};
+    BOOST_REQUIRE((std::is_same_v<decltype(s1), XXX>));
+    BOOST_REQUIRE((std::is_same_v<decltype(s2), XXX>));
+    BOOST_REQUIRE((std::is_same_v<decltype(s3), XXX>));
+    BOOST_REQUIRE((std::is_same_v<decltype(s4), XXX>));
+}
+
 BOOST_AUTO_TEST_CASE(std_string_variants)
 {
+    BOOST_REQUIRE((std::is_same_v<std::basic_string<char>, XXX>));
     BOOST_REQUIRE((std::is_same_v<std::string, std::basic_string<XXX>>));
     BOOST_REQUIRE((std::is_same_v<std::wstring, std::basic_string<XXX>>));
     BOOST_REQUIRE((std::is_same_v<std::u16string, std::basic_string<XXX>>));
@@ -47,19 +61,6 @@ BOOST_AUTO_TEST_CASE(std_string_constructors)
 
     std::string const s9{'H', 'e', 'l', 'l', 'o'};
     BOOST_REQUIRE_EQUAL(xxx, s9);
-}
-
-BOOST_AUTO_TEST_CASE(std_string_literals)
-{
-    using namespace std::literals::string_literals;
-    auto s1{"Hello, world!"s};
-    auto s2{L"Hello, world!"s};
-    auto s3{u"Hello, world!"s};
-    auto s4{U"Hello, world!"s};
-    BOOST_REQUIRE((std::is_same_v<decltype(s1), XXX>));
-    BOOST_REQUIRE((std::is_same_v<decltype(s2), XXX>));
-    BOOST_REQUIRE((std::is_same_v<decltype(s3), XXX>));
-    BOOST_REQUIRE((std::is_same_v<decltype(s4), XXX>));
 }
 
 BOOST_AUTO_TEST_CASE(std_string_accessors)
@@ -113,11 +114,12 @@ BOOST_AUTO_TEST_CASE(std_string_clear)
     s.clear();
     BOOST_REQUIRE_EQUAL(xxx, s.length());
     BOOST_REQUIRE_EQUAL(xxx, s.empty());
-    BOOST_REQUIRE_GE(static_cast<std::string::size_type>(xxx), s.capacity());
+    BOOST_REQUIRE_GE(s.capacity(), static_cast<std::string::size_type>(xxx));
 }
 
 BOOST_AUTO_TEST_CASE(std_string_insert)
 {
+    using namespace std::string_literals;
     std::string s2{"Bob"};
     s2.insert(1, "illy B");
     BOOST_REQUIRE_EQUAL(xxx, s2);
@@ -129,9 +131,13 @@ BOOST_AUTO_TEST_CASE(std_string_insert)
     BOOST_REQUIRE_EQUAL(xxx, s2);
 
     std::string s3{"Hello, world!"};
-    std::string s4{"big, fat"};
+    std::string s4{"big, fat "};
     s3.insert(7, s4);
     BOOST_REQUIRE_EQUAL(xxx, s3);
+
+    std::string s5{"Hello, world!"};
+    s5.insert(7, s4, xxx, 3);
+    BOOST_REQUIRE_EQUAL("Hello, fat world!"s, s5);
 }
 
 BOOST_AUTO_TEST_CASE(std_string_allocators)
