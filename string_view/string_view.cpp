@@ -84,6 +84,20 @@ BOOST_AUTO_TEST_CASE(std_string_view_copy)
     BOOST_REQUIRE_EQUAL("world"s, std::string(std::begin(dest), std::end(dest)));
 }
 
+BOOST_AUTO_TEST_CASE(std_string_view_substr)
+{
+    constexpr std::string_view s{"Hello, world!", 13};
+    constexpr auto s2{s.substr()};
+    BOOST_REQUIRE((std::is_same_v<decltype(s2), XXX>));
+    BOOST_REQUIRE_EQUAL("xxx"s, s2);
+    auto s3{s.substr(xxx)};
+    BOOST_REQUIRE_EQUAL("world!"s, s3);
+    auto s4{s.substr(xxx, xxx)};
+    BOOST_REQUIRE_EQUAL("world"s, s4);
+    constexpr auto s5{s.substr(3, std::string_view::npos)};
+    BOOST_REQUIRE_EQUAL("xxx"s, s5);
+}
+
 BOOST_AUTO_TEST_CASE(std_string_view_iterators)
 {
     std::string_view s{"Hello, world!"};
