@@ -456,6 +456,17 @@ BOOST_AUTO_TEST_CASE(std_string_find_first_of)
 
 BOOST_AUTO_TEST_CASE(std_string_find_first_not_of)
 {
+    std::string s{"Foobar Googly Eyes"};
+    auto res = s.find_first_not_of("ABCDEFG"s);
+    BOOST_REQUIRE((std::is_same_v<decltype(res), XXX>));
+    BOOST_REQUIRE_EQUAL(xxx, res);
+
+    BOOST_REQUIRE_EQUAL(xxx, s.find_first_not_of("oab"s, 1));
+    BOOST_REQUIRE_EQUAL(xxx, s.find_first_not_of("abF"));
+    BOOST_REQUIRE_EQUAL(xxx, s.find_first_not_of("abF", 3));
+    BOOST_REQUIRE_EQUAL(xxx, s.find_first_not_of("abF", 3, 1));
+    BOOST_REQUIRE_EQUAL(xxx, s.find_first_not_of('F'));
+    BOOST_REQUIRE_EQUAL(xxx, s.find_first_not_of('o', 1));
 }
 
 BOOST_AUTO_TEST_CASE(std_string_find_last_of)
