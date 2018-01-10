@@ -5,6 +5,8 @@
 #include <string_view>
 #include <type_traits>
 
+#pragma warning(disable: 4996)
+
 #define BOOST_TEST_MAIN
 #include <boost/test/unit_test.hpp>
 
