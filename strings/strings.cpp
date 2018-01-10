@@ -151,6 +151,22 @@ BOOST_AUTO_TEST_CASE(std_string_insert)
 
 BOOST_AUTO_TEST_CASE(std_string_erase)
 {
+    using namespace std::string_literals;
+    std::string s1{"Hello, world!"};
+    s1.erase(5);
+    BOOST_REQUIRE_EQUAL(xxx, s1);
+
+    std::string s2{"Hello, world!"};
+    s2.erase(5, 1);
+    BOOST_REQUIRE_EQUAL(xxx, s2);
+
+    std::string s3{"Hello, world!"};
+    s3.erase(s3.end() - 1);
+    BOOST_REQUIRE_EQUAL(xxx, s3);
+
+    std::string s4{"Hello, world!"};
+    s4.erase(xxx, s4.end() - 1);
+    BOOST_REQUIRE_EQUAL("H!"s, s4);
 }
 
 BOOST_AUTO_TEST_CASE(std_string_push_back)
