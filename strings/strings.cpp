@@ -120,32 +120,40 @@ BOOST_AUTO_TEST_CASE(std_string_clear)
 BOOST_AUTO_TEST_CASE(std_string_insert)
 {
     using namespace std::string_literals;
+
     std::string s2{"Bob"};
-    s2.insert(1, "illy B");
+    auto res1 = s2.insert(1, "illy B");
+    BOOST_REQUIRE((std::is_same_v<decltype(res1), XXX>));
     BOOST_REQUIRE_EQUAL(xxx, s2);
 
-    s2.insert(0, 2, '-');
+    auto res2 = s2.insert(0, 2, '-');
+    BOOST_REQUIRE((std::is_same_v<decltype(res2), XXX>));
     BOOST_REQUIRE_EQUAL(xxx, s2);
 
-    s2.insert(2, "Hello, world!", 7);
+    auto res3 = s2.insert(2, "Hello, world!", 7);
+    BOOST_REQUIRE((std::is_same_v<decltype(res3), XXX>));
     BOOST_REQUIRE_EQUAL(xxx, s2);
 
     std::string s3{"Hello, world!"};
     std::string s4{"big, fat "};
-    s3.insert(7, s4);
+    auto res4 = s3.insert(7, s4);
+    BOOST_REQUIRE((std::is_same_v<decltype(res4), XXX>));
     BOOST_REQUIRE_EQUAL(xxx, s3);
 
     std::string s5{"Hello, world!"};
-    s5.insert(7, s4, xxx, 3);
+    auto res5 = s5.insert(7, s4, xxx, 3);
+    BOOST_REQUIRE((std::is_same_v<decltype(res5), XXX>));
     BOOST_REQUIRE_EQUAL("Hello, fat world!"s, s5);
 
     std::string s6{"Hello? "};
-    std::string::iterator pos = s5.insert<std::string::iterator>(s5.begin(), s6.begin(), xxx);
+    auto res6 = s5.insert<std::string::iterator>(s5.begin(), s6.begin(), xxx);
+    BOOST_REQUIRE((std::is_same_v<decltype(res6), XXX>));
     BOOST_REQUIRE_EQUAL("Hello? Hello, fat world!"s, s5);
-    BOOST_REQUIRE_EQUAL(xxx, *pos);
+    BOOST_REQUIRE_EQUAL(xxx, *res6);
 
     std::string s7{", world"};
-    s7.insert(0, {'H', 'e', 'l', 'l', 'o'});
+    auto res7 = s7.insert(0, {'H', 'e', 'l', 'l', 'o'});
+    BOOST_REQUIRE((std::is_same_v<decltype(res7), XXX>));
     BOOST_REQUIRE_EQUAL(xxx, s7);
 }
 
@@ -171,10 +179,18 @@ BOOST_AUTO_TEST_CASE(std_string_erase)
 
 BOOST_AUTO_TEST_CASE(std_string_push_back)
 {
+    using namespace std::string_literals;
+    std::string s{"<"};
+    s.push_back(xxx);
+    BOOST_REQUIRE_EQUAL("<>", s);
 }
 
 BOOST_AUTO_TEST_CASE(std_string_pop_back)
 {
+    using namespace std::string_literals;
+    std::string s{"[]"};
+    s.pop_back();
+    BOOST_REQUIRE_EQUAL(xxx, s);
 }
 
 BOOST_AUTO_TEST_CASE(std_string_append)
