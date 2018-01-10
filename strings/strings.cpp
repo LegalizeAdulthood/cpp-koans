@@ -146,7 +146,8 @@ BOOST_AUTO_TEST_CASE(std_string_insert)
     BOOST_REQUIRE_EQUAL("Hello, fat world!"s, s5);
 
     std::string s6{"Hello? "};
-    auto res6 = s5.insert<std::string::iterator>(s5.begin(), s6.begin(), xxx);
+    std::string::iterator it6{xxx};
+    auto res6 = s5.insert<std::string::iterator>(s5.begin(), s6.begin(), it6);
     BOOST_REQUIRE((std::is_same_v<decltype(res6), XXX>));
     BOOST_REQUIRE_EQUAL("Hello? Hello, fat world!"s, s5);
     BOOST_REQUIRE_EQUAL(xxx, *res6);
@@ -173,7 +174,8 @@ BOOST_AUTO_TEST_CASE(std_string_erase)
     BOOST_REQUIRE_EQUAL(xxx, s3);
 
     std::string s4{"Hello, world!"};
-    s4.erase(xxx, s4.end() - 1);
+    std::string::iterator it4{xxx};
+    s4.erase(it4, s4.end() - 1);
     BOOST_REQUIRE_EQUAL("H!"s, s4);
 }
 
@@ -181,7 +183,8 @@ BOOST_AUTO_TEST_CASE(std_string_push_back)
 {
     using namespace std::string_literals;
     std::string s{"<"};
-    s.push_back(xxx);
+    char c{xxx};
+    s.push_back(c);
     BOOST_REQUIRE_EQUAL("<>"s, s);
 }
 
@@ -222,7 +225,8 @@ BOOST_AUTO_TEST_CASE(std_string_append)
     BOOST_REQUIRE_EQUAL("Powdered donut"s, s6);
 
     std::string s7{"+"};
-    s7.append({ xxx, xxx, xxx });
+    std::initializer_list<char> il{ xxx, xxx, xxx };
+    s7.append(il);
     BOOST_REQUIRE_EQUAL("+--+"s, s7);
 }
 
@@ -295,6 +299,52 @@ BOOST_AUTO_TEST_CASE(std_string_compare)
 
 BOOST_AUTO_TEST_CASE(std_string_replace)
 {
+    using namespace std::string_literals;
+    std::string s{"Canonical"};
+    auto res = s.replace(xxx, xxx, "Med"s);
+    BOOST_REQUIRE((std::is_same_v<decltype(res), XXX>));
+    BOOST_REQUIRE_EQUAL("Medical"s, s);
+
+    std::string::iterator first1{xxx};
+    std::string::iterator last1{xxx};
+    s.replace(first1, last1, "Gargantuan"s);
+    BOOST_REQUIRE_EQUAL("Gargantuan"s, s);
+
+    s.replace(xxx, xxx, " Two Face"s, xxx, xxx);
+    BOOST_REQUIRE_EQUAL("Gargantua Two"s, s);
+
+    s.replace(xxx, xxx, "Orion double"s, xxx);
+    BOOST_REQUIRE_EQUAL("Gargantuan double"s, s);
+
+    s.replace(xxx, xxx, "single minded", xxx);
+    BOOST_REQUIRE_EQUAL("Gargantuan single"s, s);
+
+    std::string::iterator first2{xxx};
+    std::string::iterator last2{xxx};
+    s.replace(first2, last2, "double sided", xxx);
+    BOOST_REQUIRE_EQUAL("Gargantuan double"s, s);
+
+    s.replace(xxx, xxx, "le carefully");
+    BOOST_REQUIRE_EQUAL("Gargle carefully"s, s);
+
+    std::string::iterator first3{xxx};
+    std::string::iterator last3{xxx};
+    s.replace(first3, last3, "is funny sometimes", xxx);
+    BOOST_REQUIRE_EQUAL("Gargle is funny"s, s);
+
+    s.replace(xxx, 4, xxx, '-');
+    BOOST_REQUIRE_EQUAL("Gargle--funny"s, s);
+
+    std::string::iterator first4{xxx};
+    std::string::iterator last4{xxx};
+    s.replace(first4, last4, 1, '!');
+    BOOST_REQUIRE_EQUAL("Gargle!"s, s);
+
+    std::string::iterator first5{xxx};
+    std::string::iterator last5{xxx};
+    std::initializer_list<char> il{ xxx, xxx, xxx };
+    s.replace(first5, last5, il);
+    BOOST_REQUIRE_EQUAL("Woo!", s);
 }
 
 BOOST_AUTO_TEST_CASE(std_string_substr)
