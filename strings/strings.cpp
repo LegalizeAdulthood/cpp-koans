@@ -525,8 +525,87 @@ BOOST_AUTO_TEST_CASE(std_string_find_last_not_of)
     BOOST_REQUIRE_EQUAL(xxx, s.find_last_not_of('o', 100));
 }
 
-BOOST_AUTO_TEST_CASE(std_string_conversions)
+BOOST_AUTO_TEST_CASE(std_string_signed_integer_conversions)
 {
+    auto res1 = std::stoi("111"s);
+    BOOST_REQUIRE((std::is_same_v<decltype(res1), XXX>));
+    BOOST_REQUIRE_EQUAL(xxx, res1);
+    auto res2 = std::stol("222"s);
+    BOOST_REQUIRE((std::is_same_v<decltype(res2), XXX>));
+    BOOST_REQUIRE_EQUAL(xxx, res2);
+    auto res3 = std::stoll("333"s);
+    BOOST_REQUIRE((std::is_same_v<decltype(res3), XXX>));
+    BOOST_REQUIRE_EQUAL(xxx, res3);
+
+    BOOST_REQUIRE_EQUAL(xxx, std::stoi(L"111"s));
+    BOOST_REQUIRE_EQUAL(xxx, std::stol(L"222"s));
+    BOOST_REQUIRE_EQUAL(xxx, std::stoll(L"333"s));
+
+    BOOST_REQUIRE_EQUAL(xxx, std::stoi(" \t\v\r\n\f111"s));
+    BOOST_REQUIRE_EQUAL(xxx, std::stol(" \t\v\r\n\f222"s));
+    BOOST_REQUIRE_EQUAL(xxx, std::stoll(" \t\v\r\n\f333"s));
+
+    BOOST_REQUIRE_EQUAL(xxx, std::stoi("-1"));
+    BOOST_REQUIRE_EQUAL(xxx, std::stoi("+1"));
+
+    std::size_t pos = 0;
+    BOOST_REQUIRE_EQUAL(xxx, std::stoi("100x"s, &pos));
+    BOOST_REQUIRE_EQUAL(xxx, pos);
+
+    for( int base = 2; base <= 36; ++base)
+    {
+        BOOST_REQUIRE_EQUAL(xxx, std::stoi("10", nullptr, base));
+    }
+
+    BOOST_REQUIRE_EQUAL(xxx, std::stoi("10", nullptr, 0));
+    BOOST_REQUIRE_EQUAL(xxx, std::stoi("010", nullptr, 0));
+    BOOST_REQUIRE_EQUAL(xxx, std::stoi("010", nullptr, 8));
+    BOOST_REQUIRE_EQUAL(xxx, std::stoi("0x10", nullptr, 0));
+    BOOST_REQUIRE_EQUAL(xxx, std::stoi("0X10", nullptr, 0));
+    BOOST_REQUIRE_EQUAL(xxx, std::stoi("0x10", nullptr, 16));
+    BOOST_REQUIRE_EQUAL(xxx, std::stoi("0xa", nullptr, 16));
+    BOOST_REQUIRE_EQUAL(xxx, std::stoi("0xA", nullptr, 16));
+
+    BOOST_REQUIRE_THROW(std::stoi("Yikes!"), XXX);
+    BOOST_REQUIRE_THROW(std::stoi("0xFFFFFFFFFFFFFFFFFFFFFFFF", nullptr, 16), XXX);
+}
+
+BOOST_AUTO_TEST_CASE(std_string_unsigned_integer_conversions)
+{
+    auto res1 = std::stoul("111"s);
+    BOOST_REQUIRE((std::is_same_v<decltype(res1), XXX>));
+    BOOST_REQUIRE_EQUAL(xxx, res1);
+    auto res2 = std::stoull("222"s);
+    BOOST_REQUIRE((std::is_same_v<decltype(res2), XXX>));
+    BOOST_REQUIRE_EQUAL(xxx, res2);
+
+    BOOST_REQUIRE_EQUAL(xxx, std::stoul(L"111"s));
+    BOOST_REQUIRE_EQUAL(xxx, std::stoull(L"222"s));
+
+    BOOST_REQUIRE_EQUAL(xxx, std::stoul(" \t\v\r\n\f111"s));
+    BOOST_REQUIRE_EQUAL(xxx, std::stoull(" \t\v\r\n\f222"s));
+
+    BOOST_REQUIRE_EQUAL(xxx, std::stoul("-1"));
+    BOOST_REQUIRE_EQUAL(xxx, std::stoul("+1"));
+
+    std::size_t pos = 0;
+    BOOST_REQUIRE_EQUAL(xxx, std::stoul("100x"s, &pos));
+    BOOST_REQUIRE_EQUAL(xxx, pos);
+
+    for( int base = 2; base <= 36; ++base)
+    {
+        BOOST_REQUIRE_EQUAL(xxx, std::stoul("10", nullptr, base));
+    }
+
+    BOOST_REQUIRE_EQUAL(xxx, std::stoul("10", nullptr, 0));
+    BOOST_REQUIRE_EQUAL(xxx, std::stoul("010", nullptr, 0));
+    BOOST_REQUIRE_EQUAL(xxx, std::stoul("010", nullptr, 8));
+    BOOST_REQUIRE_EQUAL(xxx, std::stoul("0x10", nullptr, 0));
+    BOOST_REQUIRE_EQUAL(xxx, std::stoul("0X10", nullptr, 0));
+    BOOST_REQUIRE_EQUAL(xxx, std::stoul("0x10", nullptr, 16));
+
+    BOOST_REQUIRE_THROW(std::stoul("Yikes!"), XXX);
+    BOOST_REQUIRE_THROW(std::stoul("0xFFFFFFFFFFFFFFFFFFFFFFFF", nullptr, 16), XXX);
 }
 
 BOOST_AUTO_TEST_CASE(std_string_allocators)
