@@ -12,8 +12,9 @@
 
 struct XXX
 {
-    operator bool() { throw std::runtime_error("Oops"); }
-    operator std::string_view::size_type() { throw std::runtime_error("Oops"); }
+    operator bool() const { throw std::runtime_error("Oops"); }
+    operator char() const { throw std::runtime_error{"Oops"}; }
+    operator std::string_view::size_type() const { throw std::runtime_error("Oops"); }
 };
 
 XXX xxx;

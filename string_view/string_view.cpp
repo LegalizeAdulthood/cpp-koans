@@ -113,6 +113,140 @@ BOOST_AUTO_TEST_CASE(std_string_view_compare)
     BOOST_REQUIRE_EQUAL(0, s1.compare(xxx, 4, "Canonical", 5));
 }
 
+BOOST_AUTO_TEST_CASE(std_string_view_find)
+{
+    constexpr std::string_view s{"Have a fun day at the zoo.", 26};
+    auto res = s.find("a"s);
+    BOOST_REQUIRE((std::is_same_v<decltype(res), XXX>));
+    BOOST_REQUIRE_EQUAL(xxx, res);
+
+    char ch{xxx};
+    BOOST_REQUIRE_EQUAL(4, s.find(ch));
+    BOOST_REQUIRE_EQUAL(6, s.find(ch, xxx));
+    BOOST_REQUIRE_EQUAL(xxx, s.find(std::string_view{"!", 1}));
+    BOOST_REQUIRE_EQUAL(xxx, s.find("!"s));
+    BOOST_REQUIRE_EQUAL(14, s.find(" a"s, xxx));
+    BOOST_REQUIRE_EQUAL(xxx, s.find(" a"));
+    BOOST_REQUIRE_EQUAL(14, s.find(" a", xxx));
+    BOOST_REQUIRE_EQUAL(4, s.find(" a", xxx, 1));
+
+    BOOST_REQUIRE_EQUAL(xxx, ""s.find(ch));
+    BOOST_REQUIRE_EQUAL(xxx, "foo"s.find(ch, 10));
+    BOOST_REQUIRE_EQUAL(xxx, "foo"s.find("f"s, 10));
+    BOOST_REQUIRE_EQUAL(xxx, "foo"s.find("fo", 10));
+}
+
+BOOST_AUTO_TEST_CASE(std_string_view_rfind)
+{
+    constexpr std::string_view s{"Foobar Googly Eyes", 18};
+    auto res = s.rfind("oo"s);
+    BOOST_REQUIRE((std::is_same_v<decltype(res), XXX>));
+    BOOST_REQUIRE_EQUAL(xxx, res);
+
+    BOOST_REQUIRE_EQUAL(xxx, s.rfind("oo"s, 6));
+    BOOST_REQUIRE_EQUAL(xxx, s.rfind("oo"));
+    BOOST_REQUIRE_EQUAL(xxx, s.rfind("oo", 6));
+    BOOST_REQUIRE_EQUAL(xxx, s.rfind("oo", 6, 1));
+    BOOST_REQUIRE_EQUAL(xxx, s.rfind('y'));
+    BOOST_REQUIRE_EQUAL(xxx, s.rfind('y', 14));
+}
+
+BOOST_AUTO_TEST_CASE(std_string_view_find_first_of)
+{
+    constexpr std::string_view s{"Foobar Googly Eyes", 18};
+    auto res = s.find_first_of("EGF"s);
+    BOOST_REQUIRE((std::is_same_v<decltype(res), XXX>));
+    BOOST_REQUIRE_EQUAL(xxx, res);
+
+    BOOST_REQUIRE_EQUAL(xxx, s.find_first_of("EGF"s, 1));
+    BOOST_REQUIRE_EQUAL(xxx, s.find_first_of("EGF"));
+    BOOST_REQUIRE_EQUAL(xxx, s.find_first_of("EGF", 1));
+    BOOST_REQUIRE_EQUAL(xxx, s.find_first_of("EGF", 1, 1));
+    BOOST_REQUIRE_EQUAL(xxx, s.find_first_of('o'));
+    BOOST_REQUIRE_EQUAL(xxx, s.find_first_of('o', 3));
+    
+    BOOST_REQUIRE_EQUAL(xxx, s.find_first_of(""s));
+    BOOST_REQUIRE_EQUAL(xxx, s.find_first_of(""));
+    BOOST_REQUIRE_EQUAL(xxx, s.find_first_of("ABC"s));
+    BOOST_REQUIRE_EQUAL(xxx, s.find_first_of("ABC"));
+    BOOST_REQUIRE_EQUAL(xxx, s.find_first_of('A'));
+    BOOST_REQUIRE_EQUAL(xxx, s.find_first_of("o"s, 100));
+    BOOST_REQUIRE_EQUAL(xxx, s.find_first_of("o", 100));
+    BOOST_REQUIRE_EQUAL(xxx, s.find_first_of("o", 100, 1));
+    BOOST_REQUIRE_EQUAL(xxx, s.find_first_of('o', 100));
+}
+
+BOOST_AUTO_TEST_CASE(std_string_view_find_first_not_of)
+{
+    constexpr std::string_view s{"Foobar Googly Eyes", 18};
+    auto res = s.find_first_not_of("ABCDEFG"s);
+    BOOST_REQUIRE((std::is_same_v<decltype(res), XXX>));
+    BOOST_REQUIRE_EQUAL(xxx, res);
+
+    BOOST_REQUIRE_EQUAL(xxx, s.find_first_not_of("oab"s, 1));
+    BOOST_REQUIRE_EQUAL(xxx, s.find_first_not_of("abF"));
+    BOOST_REQUIRE_EQUAL(xxx, s.find_first_not_of("abF", 3));
+    BOOST_REQUIRE_EQUAL(xxx, s.find_first_not_of("abF", 3, 1));
+    BOOST_REQUIRE_EQUAL(xxx, s.find_first_not_of('F'));
+    BOOST_REQUIRE_EQUAL(xxx, s.find_first_not_of('o', 1));
+
+    BOOST_REQUIRE_EQUAL(xxx, s.find_first_not_of("Fobar GglyEes"s));
+    BOOST_REQUIRE_EQUAL(xxx, s.find_first_not_of("Fobar GglyEes"));
+    BOOST_REQUIRE_EQUAL(xxx, s.substr(1, 1).find_first_not_of('F'));
+    BOOST_REQUIRE_EQUAL(xxx, s.find_first_not_of("o"s, 100));
+    BOOST_REQUIRE_EQUAL(xxx, s.find_first_not_of("o", 100));
+    BOOST_REQUIRE_EQUAL(xxx, s.find_first_not_of("o", 100, 1));
+    BOOST_REQUIRE_EQUAL(xxx, s.find_first_not_of('o', 100));
+}
+
+BOOST_AUTO_TEST_CASE(std_string_view_find_last_of)
+{
+    constexpr std::string_view s{"Foobar Googly Eyes", 18};
+    auto res = s.find_last_of("EGF"s);
+    BOOST_REQUIRE((std::is_same_v<decltype(res), XXX>));
+    BOOST_REQUIRE_EQUAL(xxx, res);
+
+    BOOST_REQUIRE_EQUAL(xxx, s.find_last_of("EGF"s, 1));
+    BOOST_REQUIRE_EQUAL(xxx, s.find_last_of("EGF"));
+    BOOST_REQUIRE_EQUAL(xxx, s.find_last_of("EGF", 1));
+    BOOST_REQUIRE_EQUAL(xxx, s.find_last_of("EGF", 1, 1));
+    BOOST_REQUIRE_EQUAL(xxx, s.find_last_of('o'));
+    BOOST_REQUIRE_EQUAL(xxx, s.find_last_of('o', 3));
+
+    BOOST_REQUIRE_EQUAL(xxx, s.find_last_of(""s));
+    BOOST_REQUIRE_EQUAL(xxx, s.find_last_of(""));
+    BOOST_REQUIRE_EQUAL(xxx, s.find_last_of("ABC"s));
+    BOOST_REQUIRE_EQUAL(xxx, s.find_last_of("ABC"));
+    BOOST_REQUIRE_EQUAL(xxx, s.find_last_of('A'));
+    BOOST_REQUIRE_EQUAL(xxx, s.find_last_of("o"s, 100));
+    BOOST_REQUIRE_EQUAL(xxx, s.find_last_of("o", 100));
+    BOOST_REQUIRE_EQUAL(xxx, s.find_last_of("o", 100, 1));
+    BOOST_REQUIRE_EQUAL(xxx, s.find_last_of('o', 100));
+}
+
+BOOST_AUTO_TEST_CASE(std_string_view_find_last_not_of)
+{
+    constexpr std::string_view s{"Foobar Googly Eyes", 18};
+    auto res = s.find_last_not_of("ABCDEFG"s);
+    BOOST_REQUIRE((std::is_same_v<decltype(res), XXX>));
+    BOOST_REQUIRE_EQUAL(xxx, res);
+
+    BOOST_REQUIRE_EQUAL(xxx, s.find_last_not_of("oab"s, 1));
+    BOOST_REQUIRE_EQUAL(xxx, s.find_last_not_of("abF"));
+    BOOST_REQUIRE_EQUAL(xxx, s.find_last_not_of("abF", 3));
+    BOOST_REQUIRE_EQUAL(xxx, s.find_last_not_of("abF", 3, 1));
+    BOOST_REQUIRE_EQUAL(xxx, s.find_last_not_of('F'));
+    BOOST_REQUIRE_EQUAL(xxx, s.find_last_not_of('o', 1));
+
+    BOOST_REQUIRE_EQUAL(xxx, s.find_last_not_of("Fobar GglyEes"s));
+    BOOST_REQUIRE_EQUAL(xxx, s.find_last_not_of("Fobar GglyEes"));
+    BOOST_REQUIRE_EQUAL(xxx, s.substr(1, 1).find_last_not_of('F'));
+    BOOST_REQUIRE_EQUAL(xxx, s.find_last_not_of("o"s, 100));
+    BOOST_REQUIRE_EQUAL(xxx, s.find_last_not_of("o", 100));
+    BOOST_REQUIRE_EQUAL(xxx, s.find_last_not_of("o", 100, 1));
+    BOOST_REQUIRE_EQUAL(xxx, s.find_last_not_of('o', 100));
+}
+
 BOOST_AUTO_TEST_CASE(std_string_view_iterators)
 {
     std::string_view s{"Hello, world!"};
