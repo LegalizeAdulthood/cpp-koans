@@ -589,6 +589,36 @@ BOOST_AUTO_TEST_CASE(std_string_unsigned_integer_conversions)
     BOOST_REQUIRE_THROW(std::stoul("0xFFFFFFFFFFFFFFFFFFFFFFFF", nullptr, 16), XXX);
 }
 
+BOOST_AUTO_TEST_CASE(std_string_float_conversions)
+{
+    auto res1 = std::stof("111"s);
+    BOOST_REQUIRE((std::is_same_v<decltype(res1), XXX>));
+    BOOST_REQUIRE_EQUAL(xxx, res1);
+    auto res2 = std::stod("222"s);
+    BOOST_REQUIRE((std::is_same_v<decltype(res2), XXX>));
+    BOOST_REQUIRE_EQUAL(xxx, res2);
+
+    BOOST_REQUIRE_EQUAL(xxx, std::stof(L"111"s));
+    BOOST_REQUIRE_EQUAL(xxx, std::stod(L"222"s));
+
+    BOOST_REQUIRE_EQUAL(xxx, std::stof(" \t\v\r\n\f111"s));
+    BOOST_REQUIRE_EQUAL(xxx, std::stod(" \t\v\r\n\f222"s));
+
+    BOOST_REQUIRE_EQUAL(xxx, std::stof("-1.5e1"));
+    BOOST_REQUIRE_EQUAL(xxx, std::stof("+1.5E1"));
+    BOOST_REQUIRE_EQUAL(xxx, std::stof("inf"));
+    BOOST_REQUIRE_EQUAL(xxx, std::stof("-INFINITY"));
+    BOOST_REQUIRE_EQUAL(xxx, std::stof("+nan"));
+    BOOST_REQUIRE_EQUAL(xxx, std::stof("-nanotechnology"));
+
+    std::size_t pos = 0;
+    BOOST_REQUIRE_EQUAL(xxx, std::stof("100x"s, &pos));
+    BOOST_REQUIRE_EQUAL(xxx, pos);
+
+    BOOST_REQUIRE_THROW(std::stof("Yikes!"), XXX);
+    BOOST_REQUIRE_THROW(std::stof("0xFFFFFFFFFFFFFFFFFFFFFFFF", nullptr), XXX);
+}
+
 BOOST_AUTO_TEST_CASE(std_string_allocators)
 {
     BOOST_REQUIRE((std::is_same_v<std::string::allocator_type, XXX>));
