@@ -619,6 +619,22 @@ BOOST_AUTO_TEST_CASE(std_string_float_conversions)
     BOOST_REQUIRE_THROW(std::stof("0xFFFFFFFFFFFFFFFFFFFFFFFF", nullptr), XXX);
 }
 
+BOOST_AUTO_TEST_CASE(std_string_convert_to_string)
+{
+    BOOST_REQUIRE((std::is_same_v<decltype(std::to_string(1)), XXX>));
+    BOOST_REQUIRE((std::is_same_v<decltype(std::to_wstring(1)), XXX>));
+    BOOST_REQUIRE_EQUAL("xxx"s, std::to_string(-1));
+    BOOST_REQUIRE_EQUAL("xxx"s, std::to_string(2L));
+    BOOST_REQUIRE_EQUAL("xxx"s, std::to_string(3LL));
+    BOOST_REQUIRE_EQUAL("xxx"s, std::to_string(4U));
+    BOOST_REQUIRE_EQUAL("xxx"s, std::to_string(5UL));
+    BOOST_REQUIRE_EQUAL("xxx"s, std::to_string(6ULL));
+    BOOST_REQUIRE_EQUAL("xxx"s, std::to_string(23.43f));
+    BOOST_REQUIRE_EQUAL("xxx"s, std::to_string(23.43));
+    BOOST_REQUIRE_EQUAL("xxx"s, std::to_string(23.43L));
+    BOOST_REQUIRE_EQUAL("xxx"s, std::to_string(1e-40));
+}
+
 BOOST_AUTO_TEST_CASE(std_string_allocators)
 {
     BOOST_REQUIRE((std::is_same_v<std::string::allocator_type, XXX>));
