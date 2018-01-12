@@ -8,8 +8,7 @@
 #include <type_traits>
 #include <utility>
 
-#define BOOST_TEST_MAIN
-#include <boost/test/unit_test.hpp>
+#include <catch.hpp>
 
 struct XXX
 {

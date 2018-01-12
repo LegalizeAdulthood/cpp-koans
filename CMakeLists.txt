@@ -1,10 +1,8 @@
-cmake_minimum_required(VERSION 2.8.11)
+cmake_minimum_required(VERSION 3.8.0)
 project(koans CXX)
 
-set(Boost_USE_STATIC_LIBS ON)
-set(Boost_USE_MULTITHREADED ON)
-set(Boost_USE_STATIC_RUNTIME OFF)
-find_package(Boost 1.60 REQUIRED COMPONENTS unit_test_framework)
+add_library(catch2 STATIC common/main.cpp catch2/catch.hpp)
+target_include_directories(catch2 PUBLIC ${PROJECT_SOURCE_DIR}/catch2)
 
 if("${CMAKE_CXX_COMPILER_ID}" MATCHES "(GNU|Clang)")
     set(CMAKE_CXX_FLAGS "-std=c++11")
@@ -12,9 +10,8 @@ endif()
 
 function(add_koan name)
     add_executable(${name} ${name}.cpp ${name}.h)
-    target_include_directories(${name} PRIVATE . ${Boost_INCLUDE_DIRS})
-    target_link_libraries(${name} PRIVATE ${Boost_LIBRARIES})
-    add_custom_command(TARGET ${name} POST_BUILD COMMAND ${name})
+    target_link_libraries(${name} PRIVATE catch2)
+    add_custom_command(TARGET ${name} POST_BUILD COMMAND ${name} --reporter compact)
 endfunction()
 
 add_subdirectory(type_traits)
