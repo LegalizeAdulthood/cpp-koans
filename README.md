@@ -43,10 +43,9 @@ the tests and report failed assertions.
 
 # Dependencies
 
-- [CMake](http://www.cmake.org) for the build infrastructure.
-- [Boost](http://www.boost.org) for the unit test framework.  The build script expects to find a compiled Boost.Test
-  configured as a static library, multithreaded, with static C/C++ runtime.  This choice is arbitrary and you can
-  modify the build script to suit your own needs.
+- [CMake 3.8.0](http://www.cmake.org) for the build infrastructure.
+- [Catch2](http://catch-lib.net) for the unit test framework.  Catch2 is included in the cpp-koans repository,
+  so there is nothing to download.
   
 # Contributing
 
