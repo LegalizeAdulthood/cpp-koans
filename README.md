@@ -26,6 +26,11 @@ as assertions.  Initially all the assertions fail.  To practice the koan, edit e
 assertion true.  Typically each assertion will contain the symbol `XXX` or `xxx` representing the portion you
 edit to make the assertion true.
 
+A koan is designed to increase your understanding in some way; it is not a test.  Feel free to consult documentation,
+leverage your IDE to research function signatures, etc., in order to figure out how to make an assertion pass.
+Sometimes running the tests will tell you how the right answer compared to your incorrect answer.  Feel free to
+copy/paste correct answers from the build output to pass the assertion!
+
 The build script is configured to run the tests after a successful compile, so simply building the code will run
 the tests and report failed assertions.
 
